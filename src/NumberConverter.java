@@ -13,7 +13,7 @@ public class NumberConverter {
             digits[i] = d;
         }
         this.base = base;
-        this.number = number;
+        this.number = 0;
         this.originalNumber = number;
     }
 
@@ -29,8 +29,74 @@ public class NumberConverter {
     public int[] getDigits() {
         return digits;
     }
+    public int getBase(){
+        return base;
+    }
+    public boolean convertInputError(){
 
-    public int[] convertToDecimal() {
+        if(base==8){
+            for(int i =0;digits.length>i;i++){
+                if(digits[i]>7){
+                    return true;
+                }
+            }
+        }
+        else if(base==2){
+            for(int i =0;digits.length>i;i++){
+                if(digits[i]>1){
+                    return true;
+                }
+            }
+        }
+        else if(base!=8){
+            return true;
+        }
+        else if(base!=2){
+            return true;
+        }
+        return false;
+    }
+
+    public int[] convertToDecimal()
+    {
+        if(base==8){
+            for(int i =digits.length-1;i!=-1;i--){
+                int power = 0;
+                number = number+(int)Math.pow(8,power);
+            }
+            digits = new int[1];
+            originalNumber=number;
+            for(int i =0;number>0;i++){
+                int placeValue=0;
+                while (number-Math.pow(10,i)>=0){
+                    placeValue++;
+                    number = number-(int)Math.pow(10,i);
+                }
+                digits[0]=placeValue;
+            }
+        }
+        if(base==2){
+            for(int i =digits.length-1;i!=-1;i--){
+                if(digits[i]==1){
+                    number = number+(int)Math.pow(2,i);
+                }
+            }
+            int highestPower = 0;
+            for (int i = 0; number > Math.pow(10, i); i++) {
+                highestPower = i;
+                digits = new int[highestPower + 1];
+            }
+            digits = new int[1];
+            originalNumber=number;
+            for(int i =0;number>0;i++){
+                int placeValue=0;
+                while (number-Math.pow(10,i)>=0){
+                    placeValue++;
+                    number = number-(int)Math.pow(10,i);
+                }
+                digits[0]=placeValue;
+            }
+        }
         return digits;
     }
 
@@ -61,13 +127,15 @@ public class NumberConverter {
             highestPower = i;
             digits = new int[highestPower+1];
         }
-        for (int i =0; highestPower+1>=i;i++){
+        for (int i =0; highestPower!=-1;i++){
             int placeValue = 0;
             while (number-Math.pow(8,highestPower)>=0){
-                placeValue++;
+
                 number = number-(int)Math.pow(8,highestPower);
-                digits[i]=placeValue;
+                placeValue++;
+
             }
+            digits[i]=placeValue;
             highestPower--;
         }
         return digits;

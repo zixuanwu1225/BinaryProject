@@ -19,9 +19,24 @@ class ConverterRunner {
 
         NumberConverter nc = new NumberConverter(n, base);
         int[] digits = nc.getDigits();
-        System.out.println("\n\nDigit array: " + Arrays.toString(digits));
-        System.out.println("Number: " + nc.displayOriginalNumber());
-        System.out.println(Arrays.toString(nc.convertToBinary()));
-        System.out.println(Arrays.toString(nc.convertToOctal()));
+        if(!nc.convertInputError()) {
+            System.out.println("\n\nDigit array: " + Arrays.toString(digits));
+            System.out.println("Number: " + nc.displayOriginalNumber());
+            if(nc.getBase()==2){
+                System.out.println("Decimal Form:"+ Arrays.toString(nc.convertToDecimal()));
+                System.out.println("Octal Form:"+ Arrays.toString(nc.convertToOctal()));
+            }
+            if(nc.getBase()==8){
+                System.out.println("Decimal Form:"+ Arrays.toString(nc.convertToDecimal()));
+                System.out.println("Binary Form:"+ Arrays.toString(nc.convertToBinary()));
+            }
+            if(nc.getBase()==10){
+                System.out.println("Octal Form:"+ Arrays.toString(nc.convertToOctal()));
+                System.out.println("Binary Form:"+ Arrays.toString(nc.convertToBinary()));
+            }
+        }
+        else{
+            System.out.println("You have entered an invalid value in a parameter.");
+        }
     }
 }

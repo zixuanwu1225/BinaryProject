@@ -48,12 +48,6 @@ public class NumberConverter {
                 }
             }
         }
-        else if(base!=8){
-            return true;
-        }
-        else if(base!=2){
-            return true;
-        }
         return false;
     }
 
@@ -61,19 +55,12 @@ public class NumberConverter {
     {
         if(base==8){
             for(int i =digits.length-1;i!=-1;i--){
-                int power = 0;
-                number = number+(int)Math.pow(8,power);
-            }
-            digits = new int[1];
-            originalNumber=number;
-            for(int i =0;number>0;i++){
-                int placeValue=0;
-                while (number-Math.pow(10,i)>=0){
-                    placeValue++;
-                    number = number-(int)Math.pow(10,i);
+                if(digits[i]>0){
+                    number = number+(int)Math.pow(8,i)*digits[digits.length-1-i];
                 }
-                digits[0]=placeValue;
             }
+            digits=new int[1];
+            digits[0]=number;
         }
         if(base==2){
             for(int i =digits.length-1;i!=-1;i--){

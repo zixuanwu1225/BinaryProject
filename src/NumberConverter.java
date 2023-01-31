@@ -60,29 +60,20 @@ public class NumberConverter {
                 }
             }
             digits=new int[1];
+            originalNumber=number;
             digits[0]=number;
         }
         if(base==2){
+            int placeValue=0;
             for(int i =digits.length-1;i!=-1;i--){
                 if(digits[i]==1){
-                    number = number+(int)Math.pow(2,i);
+                    number = number+(int)Math.pow(2,placeValue);
                 }
+                placeValue++;
             }
-            int highestPower = 0;
-            for (int i = 0; number > Math.pow(10, i); i++) {
-                highestPower = i;
-                digits = new int[highestPower + 1];
-            }
-            digits = new int[1];
+            digits=new int[1];
             originalNumber=number;
-            for(int i =0;number>0;i++){
-                int placeValue=0;
-                while (number-Math.pow(10,i)>=0){
-                    placeValue++;
-                    number = number-(int)Math.pow(10,i);
-                }
-                digits[0]=placeValue;
-            }
+            digits[0]=number;
         }
         return digits;
     }

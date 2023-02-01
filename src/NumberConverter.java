@@ -75,6 +75,16 @@ public class NumberConverter {
             originalNumber=number;
             digits[0]=number;
         }
+        else{
+            for(int i =digits.length-1;i!=-1;i--){
+                if(digits[i]>0){
+                    number = number+(int)Math.pow(base,i)*digits[digits.length-1-i];
+                }
+            }
+            digits=new int[1];
+            originalNumber=number;
+            digits[0]=number;
+        }
         return digits;
     }
 
@@ -110,6 +120,26 @@ public class NumberConverter {
             while (number-Math.pow(8,highestPower)>=0){
 
                 number = number-(int)Math.pow(8,highestPower);
+                placeValue++;
+
+            }
+            digits[i]=placeValue;
+            highestPower--;
+        }
+        return digits;
+    }
+    public int[] convertAny(){
+        number = originalNumber;
+        int highestPower = 0;
+        for (int i = 0; number > Math.pow(base, i); i++) {
+            highestPower = i;
+            digits = new int[highestPower+1];
+        }
+        for (int i =0; highestPower!=-1;i++){
+            int placeValue = 0;
+            while (number-Math.pow(base,highestPower)>=0){
+
+                number = number-(int)Math.pow(base,highestPower);
                 placeValue++;
 
             }

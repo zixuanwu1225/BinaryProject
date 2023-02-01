@@ -28,14 +28,17 @@ class ConverterRunner {
                 if(nc.getBase()==2){
                     System.out.println("Decimal Form:"+ Arrays.toString(nc.convertToDecimal()));
                     System.out.println("Octal Form:"+ Arrays.toString(nc.convertToOctal()));
+                    System.out.println("Hexadecimal Form:"+Arrays.toString(nc.convertToHexa()));
                 }
                 if(nc.getBase()==8){
                     System.out.println("Decimal Form:"+ Arrays.toString(nc.convertToDecimal()));
                     System.out.println("Binary Form:"+ Arrays.toString(nc.convertToBinary()));
+                    System.out.println("Hexadecimal Form:"+Arrays.toString(nc.convertToHexa()));
                 }
                 if(nc.getBase()==10){
                     System.out.println("Octal Form:"+ Arrays.toString(nc.convertToOctal()));
                     System.out.println("Binary Form:"+ Arrays.toString(nc.convertToBinary()));
+                    System.out.println("Hexadecimal Form:"+Arrays.toString(nc.convertToHexa()));
                 }
             }
             else{

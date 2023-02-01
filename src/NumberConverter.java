@@ -2,6 +2,7 @@ public class NumberConverter {
     int number;
     int originalNumber;
     int[] digits;
+    String[] hexa;
     int base;
 
     public NumberConverter(int number, int base) {
@@ -127,6 +128,46 @@ public class NumberConverter {
             highestPower--;
         }
         return digits;
+    }
+    public String[] convertToHexa(){
+        number = originalNumber;
+        int highestPower = 0;
+        for (int i = 0; number > Math.pow(16, i); i++) {
+            highestPower = i;
+            hexa = new String[highestPower+1];
+        }
+        for (int i =0; highestPower!=-1;i++){
+            int placeValue = 0;
+            while (number-Math.pow(16,highestPower)>=0){
+
+                number = number-(int)Math.pow(16,highestPower);
+                placeValue++;
+
+            }
+            if(placeValue==10){
+                hexa[i]= "A";
+            }
+            else if(placeValue==11){
+                hexa[i]="B";
+            }
+            else if(placeValue==12){
+                hexa[i]="C";
+            }
+            else if (placeValue == 13){
+                hexa[i]="D";
+            }
+            else if(placeValue==14){
+                hexa[i]="E";
+            }
+            else if(placeValue==15){
+                hexa[i]="F";
+            }
+            else {
+                hexa[i] = String.valueOf(placeValue);
+            }
+            highestPower--;
+        }
+        return hexa;
     }
     public int[] convertAny(){
         number = originalNumber;
